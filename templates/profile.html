@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+</head>
+<body class="conductBodyProfile">
+    <nav class="navbar navbarProfile">
+        <div style="margin-bottom: 1rem; display: flex;">
+            <div>
+                <input type='button' class="profilePage" value="{{ username[0].upper() }}">
+            </div>
+            <div id="details">
+                <div id="profileName" class="profileName" style="font-size: 3rem;">
+                    {{ username }}
+                </div>
+            </div>
+        </div>
+
+        <div style="display: flex; justify-content: space-between;">
+            <div style="display: flex; justify-content: center; align-items: center; gap:0.5rem">
+                <!-- <div style="text-align: center;"> -->
+                    <button id="myForms" class="active" onclick="navbarDisplay(0)">My Forms</button>
+                    <button id="history" class="" onclick="navbarDisplay(1)">History</button>
+                    <button id="profile" class="" onclick="navbarDisplay(2)">Profile</button>
+            </div>
+            <div id="searchbar-wrap">
+                <a href="/create">
+                    <span href="/create" class="mainspan">
+                        Create
+                        <i class="fa-solid fa-circle-plus fa-2xl"></i>
+                    </span>
+                </a>
+                <input type="text" 
+                    id="search"
+                    class="searchbar" 
+                    placeholder="Search..." 
+                    oninput="searchForms()"
+                    >
+            </div>
+        </div>
+       
+
+    </nav>
+
+    <div class="margin" id="area"> 
+        <div id="myFormsTable">
+            <div class="tableBox">
+                <div class="srno">Sr. No</div>
+                <div class="formName">Form Title</div>
+                <div class="formDesc">Description</div>
+                <div class="formDate">Last Modified</div>
+                <div class="formButtons" style="width: 5%;">Status</div>
+                <div class="formButtons">View</div>
+                <div class="formButtons">Edit</div>
+                <div class="formButtons">Analyse</div>
+                <div class="formButtons" style="width: 7%;">Delete</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="margin" id="history_area">
+        <div id="historyTable">
+            <div class="tableBox">
+                <div class="srno">Sr. No</div>
+                <div class="formName">Form Title</div>
+                <div class="formDesc">Description</div>
+                <dive class="formAuthor">Author</dive>
+                <div class="formDate">Submission Date</div>
+                <div class="formButtons">View</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="margin" id="profile_area">
+        <div class="questionBox">
+            <div style="display: flex; align-items: center; margin: 3rem">
+                <div style="width: 30%;">
+                    Current Email:
+                </div>
+                <div style="width: 30%;" id="mail">
+
+                </div>
+            </div>
+
+            <div style="display: flex; align-items: center; margin: 3rem">
+                <div style="width: 30%;">
+                    Change Email:
+                </div>
+                <form onsubmit='chng(event, 0)' style="width: 100%; display: flex; align-items: center;">
+                    <div style="margin-left: 55px; width: 39%;">
+                        <input type="email" class="inputStyle" placeholder="New Mail" id="newmail" oninput="match(0)">
+                    </div>
+                    <div style="width: 39%;">
+                        <input type="email" class="inputStyle" placeholder="Confirm Mail" id="newmail2" oninput="match(0)">
+                    </div>
+                    <div style="width: 10%">
+                        <button class="invert" id="changeBut" disabled>Change</button>
+                    </div>
+                </form>
+            </div>
+
+            <div style="display: flex; align-items: center; margin: 3rem">
+                <div style="width: 30%;">
+                    Change Password:
+                </div>
+                <div style="width: 30%;">
+                    <input type="password" class="inputStyle" placeholder="New Password" id="newpswd" oninput="match(1)">
+                </div>
+                <div style="width: 30%;">
+                    <input type="password" class="inputStyle" placeholder="Confirm Password" id="newpswd2" oninput="match(1)">
+                </div>
+                <div style="width: 10%">
+                    <button class="invert" id="changePwd" disabled onclick='chng(event, 1)'>Change</button>
+                </div>
+            </div>
+
+            <div style="margin-left: 3rem; margin-bottom: 1rem;">
+                <button class="logout" id="logout">Log Out</button>
+            </div>
+            <div style="margin-left: 3rem;">
+                <button class="deleteac" id="deleteac" onclick="deleteAccount()">Delete Account</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="overlay" class="animate__animated animate__fadeIn">
+        <div class="overlay-content" style="width: 25%;">
+            <p>
+                <h2 style="margin-bottom: 1rem">Are You Sure?</h2>
+                <span id="additionalInfo"></span>
+            </p>
+            <div style="display: flex; justify-content: space-evenly;">
+                <button class="invert" id="yes" onclick="customConfirm(1)">Yes</button>
+                <button class="invert" id="no" onclick="customConfirm(0)">No</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const formList = {{ forms|tojson|safe }}
+        const historyList = {{ history|tojson|safe }}
+        const ImgUrl = "{{ url_for('static', filename='images/trash-solid.svg') }}"
+        const username = "{{ username }}"
+    </script>
+    
+    <script src="{{ url_for('static', filename='js/profile.js') }}"></script>
+    
+</body>
+</html>

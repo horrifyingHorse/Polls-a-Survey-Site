@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="D:\Asbestos\ApplicaionPrograming\Survey\static\css\style.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.3/dragula.min.js">
+    </script>
+
+    <style>
+        .gu-mirror {
+        position: fixed !important;
+        margin: 0 !important;
+        z-index: 9999 !important;
+        opacity: 0.8;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+        filter: alpha(opacity=80);
+        }
+        .gu-hide {
+        display: none !important;
+        }
+        .gu-unselectable {
+        -webkit-user-select: none !important;
+        -moz-user-select: none !important;
+        -ms-user-select: none !important;
+        user-select: none !important;
+        }
+        .gu-transit {
+        opacity: 0.2;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+        filter: alpha(opacity=20);
+        }
+    </style>
+
+</head>
+<body class="conductBody">
+    <nav class="navbar">
+        <div style="margin-bottom: 0;">
+            <textarea name="formTitle" id="formTitle" class="formTitle"
+            oninput="main[0].form = document.getElementById('formTitle').value;"
+            >Form {{ formn }}</textarea>
+        </div>
+        <div>
+            <button id="home_btn" class="" onclick="navbarDisplay(0)">Home</button>
+            <button id="insert_btn" class="active" onclick="navbarDisplay(1)">Insert</button>
+            <button id="properties_btn" class="" onclick="displayProps()">Properties</button>
+            <button id="saveForm" class="saveFormBut" onclick="saveForm()">Save Form</button>
+            <button id="viewForm" class="viewFormBut" onclick="viewForm()">View</button>
+            <input type='button' class="profile" value="{{ username[0].upper() }}" onclick="window.location.href = '/profile'">
+        </div>
+
+        <div id="home" class="animate__animated animate__fadeIn">
+            <button id="boldButton" onclick="addMarkdownSyntax('**', 1)" disabled>Bold</button>
+            <button id="italicButton" onclick="addMarkdownSyntax('_', 1)" disabled>Italic</button>
+            <button id="strikeButton" onclick="addMarkdownSyntax('~~', 1)" disabled>Strikethrough</button>
+            <button id="quoteButton" onclick="addMarkdownSyntax('> ', 0)" disabled>Quote</button>
+            <button id="codeButton" onclick="addMarkdownSyntax('```', 1)" disabled>Code Block</button>
+            <button id="h1Button" onclick="addMarkdownSyntax('# ', 0)" disabled>Heading 1</button>
+            <button id="h2Button" onclick="addMarkdownSyntax('## ', 0)" disabled>Heading 2</button>
+            <button id="h3Button" onclick="addMarkdownSyntax('### ', 0)" disabled>Heading 3</button>
+            <button id="ulButton" onclick="addMarkdownSyntax('- ', 0)" disabled>Unordered List</button>
+        </div>
+    
+        <div id="insert" class="animate__animated animate__fadeIn">
+            <button id="addQue" onclick="iQue()">New Field</button>
+            <button id="addText" onclick="insert('tBox')">Text</button>
+            <button id="addCheckBox" onclick="insert('cBox')">CheckBox</button>
+            <button id="addRadioBut" onclick="insert('rBut')">Radio Button</button>
+            <button id="addDropDown" onclick="iDropDown()">DropDown</button>
+        </div>
+
+        <div id="properties" class="">
+            <button id="saveForm" onclick="saveForm()">Save Form</button>
+            <button id="description" onclick="saveForm()">Description</button>
+        </div>
+
+
+    </nav>
+
+    <div id="overlay" class="animate__animated animate__fadeIn">
+        <div class="overlay-content">
+            <h2>Properties</h2>
+            <form id="descriptionForm">
+                <div style="display: flex; align-items: flex-start;">
+                    <div style="width: 25%; box-sizing: border-box;">
+                        Form Name:
+                    </div>
+                    <div style="width: 75%; box-sizing: border-box;">
+                        <textarea id="propTitle" class="textBox"
+                        oninput="update(-9, '', 0); main[0].form = document.getElementById('propTitle').value;"
+                        style="border-bottom: 1px solid #9766ff;"
+                        ></textarea>
+                    </div>
+                </div>
+
+                <div style="display: flex; align-items: center;">
+                    <div style="width: 25%; box-sizing: border-box;">
+                        Form Description:
+                    </div>
+                    <div style="width: 75%; box-sizing: border-box;">
+                        <textarea id="propDesc" class="textBox"
+                        oninput="update(-8, '', 0); main[0].description =  document.getElementById('propDesc').value;"
+                        style="border-bottom: 1px solid #9766ff;"
+                        ></textarea>
+                    </div>
+                </div>
+                
+                <button class='invert' type="submit" style="margin-top: 2rem;">Save</button>
+            </form>
+        </div>
+    </div>
+
+
+    <div class="margin" id="area"> 
+        <script>
+            window.onload = function() {
+                iQue();
+            }
+
+            // const ImgUrl = "{{ url_for('static', filename='images/trash-solid.svg') }}"
+            const ImgUrl = 'D:/Asbestos/ApplicaionPrograming/Survey/static/images/trash-solid.svg'
+        </script>
+    <script src="D:\Asbestos\ApplicaionPrograming\Survey\templates\letstry.js"></script>
+    
+</body>
+</html>

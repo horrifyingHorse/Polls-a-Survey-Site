@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Synced Pie Charts</title>
+  <script
+  src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+</script>
+</head>
+<body style="background-color: black;">
+    <script>
+        recSub = [
+    [
+        1,
+        "demo",
+        [
+            {
+                "q": 1,
+                "checkbox": [],
+                "radio": []
+            },
+            {
+                "q": 2,
+                "checkbox": [
+                    2
+                ],
+                "radio": []
+            },
+            {
+                "q": 3,
+                "checkbox": [],
+                "radio": [
+                    0
+                ]
+            }
+        ]
+    ],
+    [
+        2,
+        "admin",
+        [
+            {
+                "q": 1,
+                "checkbox": [],
+                "radio": []
+            },
+            {
+                "q": 2,
+                "checkbox": [
+                    1
+                ],
+                "radio": []
+            },
+            {
+                "q": 3,
+                "checkbox": [],
+                "radio": [
+                    0
+                ]
+            }
+        ]
+    ],
+    [
+        3,
+        "demo",
+        [
+            {
+                "q": 1,
+                "checkbox": [],
+                "radio": []
+            },
+            {
+                "q": 2,
+                "checkbox": [
+                    1,
+                    3
+                ],
+                "radio": []
+            },
+            {
+                "q": 3,
+                "checkbox": [],
+                "radio": [
+                    0
+                ]
+            }
+        ]
+    ],
+    [
+        4,
+        "demo",
+        [
+            {
+                "q": 1,
+                "checkbox": [],
+                "radio": []
+            },
+            {
+                "q": 2,
+                "checkbox": [
+                    1,
+                    3,
+                    0
+                ],
+                "radio": []
+            },
+            {
+                "q": 3,
+                "checkbox": [],
+                "radio": [
+                    1
+                ]
+            }
+        ]
+    ],
+    [
+        5,
+        "demo",
+        [
+            {
+                "q": 1,
+                "checkbox": [],
+                "radio": []
+            },
+            {
+                "q": 2,
+                "checkbox": [
+                    1,
+                    3,
+                    0
+                ],
+                "radio": []
+            },
+            {
+                "q": 3,
+                "checkbox": [],
+                "radio": [
+                    1
+                ]
+            }
+        ]
+    ],
+    [
+        6,
+        "demo",
+        [
+            {
+                "q": 1,
+                "checkbox": [],
+                "radio": []
+            },
+            {
+                "q": 2,
+                "checkbox": [
+                    1,
+                    "",
+                    0
+                ],
+                "radio": []
+            },
+            {
+                "q": 3,
+                "checkbox": [],
+                "radio": [
+                    0
+                ]
+            }
+        ]
+    ],
+    [
+        7,
+        "demo",
+        [
+            {
+                "q": 1,
+                "checkbox": [],
+                "radio": []
+            },
+            {
+                "q": 2,
+                "checkbox": [
+                    "",
+                    "",
+                    0
+                ],
+                "radio": []
+            },
+            {
+                "q": 3,
+                "checkbox": [],
+                "radio": [
+                    1
+                ]
+            }
+        ]
+    ],
+    [
+        8,
+        "demo",
+        [
+            {
+                "q": 1,
+                "checkbox": [],
+                "radio": []
+            },
+            {
+                "q": 2,
+                "checkbox": [
+                    "",
+                    2,
+                    ""
+                ],
+                "radio": []
+            },
+            {
+                "q": 3,
+                "checkbox": [],
+                "radio": [
+                    1
+                ]
+            }
+        ]
+    ],
+    [
+        9,
+        "demo",
+        [
+            {
+                "q": 1,
+                "checkbox": [],
+                "radio": []
+            },
+            {
+                "q": 2,
+                "checkbox": [
+                    1,
+                    "",
+                    ""
+                ],
+                "radio": []
+            },
+            {
+                "q": 3,
+                "checkbox": [],
+                "radio": [
+                    1
+                ]
+            }
+        ]
+    ],
+    [
+        10,
+        "demo",
+        [
+            {
+                "q": 1,
+                "checkbox": [],
+                "radio": []
+            },
+            {
+                "q": 2,
+                "checkbox": [
+                    1,
+                    2,
+                    ""
+                ],
+                "radio": []
+            },
+            {
+                "q": 3,
+                "checkbox": [],
+                "radio": [
+                    0
+                ]
+            }
+        ]
+    ],
+    [
+        11,
+        "demo",
+        [
+            {
+                "q": 1,
+                "checkbox": [],
+                "radio": []
+            },
+            {
+                "q": 2,
+                "checkbox": [
+                    3,
+                    2,
+                    ""
+                ],
+                "radio": []
+            },
+            {
+                "q": 3,
+                "checkbox": [],
+                "radio": [
+                    0
+                ]
+            }
+        ]
+    ],
+    [
+        12,
+        "demo",
+        [
+            {
+                "q": 1,
+                "checkbox": [],
+                "radio": []
+            },
+            {
+                "q": 2,
+                "checkbox": [
+                    0,
+                    2,
+                    ""
+                ],
+                "radio": []
+            },
+            {
+                "q": 3,
+                "checkbox": [],
+                "radio": [
+                    0
+                ]
+            }
+        ]
+    ],
+    [
+        13,
+        "demo",
+        [
+            {
+                "q": 1,
+                "checkbox": [],
+                "radio": []
+            },
+            {
+                "q": 2,
+                "checkbox": [
+                    0,
+                    3,
+                    1,
+                    2
+                ],
+                "radio": []
+            },
+            {
+                "q": 3,
+                "checkbox": [],
+                "radio": [
+                    1
+                ]
+            }
+        ]
+    ]
+]
+
+    recMain = [
+    {
+        "id": "admin_160424032401"
+    },
+    {
+        "checkbox": [],
+        "display": [
+            "t0"
+        ],
+        "q": 1,
+        "radio": [],
+        "textarea": [
+            "<h1>Heading of the Form<br></h1>\n<br>\nSome Text\n\n"
+        ]
+    },
+    {
+        "checkbox": [
+            "<p>option 1</p>\n",
+            "<p>option 2</p>\n",
+            "<p>option 3</p>\n",
+            "<p>option 4</p>\n"
+        ],
+        "display": [
+            "t0",
+            "i0",
+            "i1",
+            "i2",
+            "i3"
+        ],
+        "q": 2,
+        "radio": [],
+        "textarea": [
+            "<p>Demo question 1<br>\nMultiple Correct</p>\n"
+        ]
+    },
+    {
+        "checkbox": [],
+        "display": [
+            "t0",
+            "r0",
+            "r1"
+        ],
+        "q": 3,
+        "radio": [
+            "<p>True</p>\n",
+            "<p>False</p>\n"
+        ],
+        "textarea": [
+            "<p>Signle Correct</p>\n"
+        ]
+    }
+]
+        let eleToEdit = document.body;
+
+        let hiddenLabels = [];
+        
+        // function(e, legendItem) {
+		// 	var index = legendItem.index;
+		// 	var chart = this.chart;
+		// 	var i, ilen, meta;
+
+		// 	for (i = 0, ilen = (chart.data.datasets || []).length; i < ilen; ++i) {
+		// 		meta = chart.getDatasetMeta(i);
+		// 		// toggle visibility of index if exists
+		// 		if (meta.data[index]) {
+		// 			meta.data[index].hidden = !meta.data[index].hidden;
+		// 		}
+		// 	}
+
+		// 	chart.update();
+		// }
+
+        const defaultLegendClickHandler = Chart.defaults.pie.legend.onClick;
+        // const pieDoughnutLegendClickHandler = Chart.controllers.doughnut.overrides.plugins.legend.onClick;
+        const newLegendClickHandler = function (e, legendItem) {
+            // console.log(e)  // --> Event
+            // console.log(legendItem)  // --> LegendItem containing details of legend, index, etc.
+            // console.log(this) // --> Chart instance
+
+            // Default click handler v2.x.x
+			var index = legendItem.index;
+			var chart = this.chart;
+			var i, ilen, meta;
+
+			for (i = 0, ilen = (chart.data.datasets || []).length; i < ilen; ++i) {
+				meta = chart.getDatasetMeta(i);
+				// toggle visibility of index if exists
+				if (meta.data[index]) {
+					meta.data[index].hidden = !meta.data[index].hidden;
+				}
+			}
+            
+			chart.update();
+
+
+            // Custom click handler
+            refQ = this.chart.canvas.id.slice(1, 2)  // reference question, which is to be hidden
+            refIndex = legendItem.index  // reference index of selected option
+            refType = this.chart.canvas.id.slice(2, 3)  // type of question, i for checkbox, r for radio
+            toHide = !legendItem.hidden  // toHide is the opposite of the current state of the selected option
+            // CinstancesSkipped = false
+            // RinstancesSkipped = false
+
+            hiddenLabelsFlag = false  // flag to check if the hidden label is already present in the list
+
+
+            // if the selected option is to be hidden, then the label is to be added to the list
+            if (toHide) {
+                cmpStr = ''   // replacing empty string with an object
+            } else {
+                // if the selected option is to be shown, then the label is to be removed from the list
+                cmpStr = {
+                        "refQ": refQ,
+                        "refIndex": refIndex,
+                        "refType": refType,
+                        "toHide": false
+                    }
+            }
+            for (i = 0; i < hiddenLabels.length; i++) {
+                // console.log(cmpStr, ' =? ', hiddenLabels[i], (hiddenLabels[i] === cmpStr))
+                // comparing the selected option with the hidden labels
+                if (JSON.stringify(hiddenLabels[i]) === JSON.stringify(cmpStr)) {
+                    hiddenLabelsFlag = true
+                    // if the selected option is to be shown, then the label is removed from the list
+                    if (!toHide) {
+                        hiddenLabels[i] = ''
+                        break
+                    }
+                    
+                    // if the selected option is to be hidden, then the label is
+                    // added to an empty slot in the list
+                    hiddenLabels[i] = {
+                        "refQ": refQ,
+                        "refIndex": refIndex,
+                        "refType": refType,
+                        "toHide": !toHide
+                    };
+                    break
+                }
+            }
+            // if the selected option is to be hidden, and there's no empty slot in list
+            // then the label is pushed into the list
+            if (!hiddenLabelsFlag && toHide) {
+                // console.log('push')
+                hiddenLabels.push({
+                    "refQ": refQ,
+                    "refIndex": refIndex,
+                    "refType": refType,
+                    "toHide": !toHide
+                });
+            }
+
+            // Collecting the data for the chart
+            // for each element in the main questions, we go through the responses
+            // and update the chart data
+            recMain.forEach((question, index) => {
+                if (index === 0) {
+                    // document.getElementById('formTitle').value = question.form
+                    return
+                }
+
+                // CinstancesSkipped = false
+                // RinstancesSkipped = false
+                
+                // arrays to store the number of instances of each option
+                /*
+                    The length of the array is equal to the number of options in the question
+                    Value at an Index of the array corresponds to the number of instances of that option
+                    format:
+                        [option1_instances, option2_instances, option3_instances, ...]
+                */
+                let analyticChx = new Array(question.checkbox.length).fill(0);  
+                let analyticRdx = new Array(question.radio.length).fill(0);
+
+                // for each response, we go through the questions and update the chart data
+                recSub.forEach(resp => {
+                    // check for reference questions and their options
+                    // if optios found in the hidden labels list, then skip the instance
+                    for (hiddenLabel of hiddenLabels) {
+                        if (hiddenLabel === '') {
+                            continue
+                        }
+                        refQ = hiddenLabel.refQ
+                        refIndex = hiddenLabel.refIndex
+                        refType = hiddenLabel.refType
+                        toHide = !hiddenLabel.toHide
+                        if (refType === 'i') {
+                            if (resp[2][refQ - 1].checkbox.includes(refIndex) && toHide) {
+                                // if (refQ == index) CinstancesSkipped = true
+                                return
+                            }
+                        } else {
+                            if (resp[2][refQ - 1].radio.includes(refIndex) && toHide) {
+                                // if (refQ == index) RinstancesSkipped = true
+                                return
+                            }
+                        }
+                    }
+
+                    // console.log(question, CinstancesSkipped, RinstancesSkipped)
+
+                    resp[2][index - 1].checkbox.forEach(el => {
+                        if (el !== '') {
+                            analyticChx[el] += 1;  // incrementing the number of instances of the option
+                        }
+                    });
+
+                    resp[2][index - 1].radio.forEach(el => {
+                        if (el !== '') {
+                            analyticRdx[el] += 1;  // incrementing the number of instances of the option
+                        }
+                    });
+                });
+
+
+                /* 
+                    Since finding and updating charts was a mess in each and every
+                    question, we try to find a chart associated with the question
+                    if found, we update the data and update the chart
+                */
+                let chartToUpdate = findChartByCanvasID(`q${index}icanvas`)
+                if (chartToUpdate != null) {
+                    console.log('????')
+                    console.log(chartToUpdate)
+                    chartToUpdate.data.datasets[0].data = analyticChx
+                    chartToUpdate.update()
+                    // shoveAChartUp(analyticChx, question.checkbox)
+                }
+
+                chartToUpdate = findChartByCanvasID(`q${index}rcanvas`)
+                if (chartToUpdate != null) {  
+                    chartToUpdate.data.datasets[0].data = analyticRdx
+                    chartToUpdate.update()
+                    // shoveAChartUp(analyticRdx, question.radio)
+                }
+
+                // previous messy approach:
+
+                // if (!analyticChx.every(item => item === 0) || CinstancesSkipped) {
+                //     console.log('????')
+                //     const chartToUpdate = findChartByCanvasID(`q${index}icanvas`)
+                //     console.log(chartToUpdate)
+                //     chartToUpdate.data.datasets[0].data = analyticChx
+                //     chartToUpdate.update()
+                //     // shoveAChartUp(analyticChx, question.checkbox)
+                // }
+
+                // if (!analyticRdx.every(item => item === 0)  || RinstancesSkipped) {  
+                //     const chartToUpdate = findChartByCanvasID(`q${index}rcanvas`)
+                //     chartToUpdate.data.datasets[0].data = analyticRdx
+                //     chartToUpdate.update()
+                //     // shoveAChartUp(analyticRdx, question.radio)
+                // }
+            });
+            
+        };
+
+            
+        recMain.forEach((question, index) => {
+            if (index === 0) {
+                // document.getElementById('formTitle').value = question.form
+                return
+            }
+            
+            let analyticChx = new Array(question.checkbox.length).fill(0);
+            let analyticRdx = new Array(question.radio.length).fill(0);
+
+            recSub.forEach(resp => {
+                resp[2][index - 1].checkbox.forEach(el => {
+                    if (el !== '') {
+                        analyticChx[el] += 1;
+                    }
+                });
+
+                resp[2][index - 1].radio.forEach(el => {
+                    if (el !== '') {
+                        analyticRdx[el] += 1;
+                    }
+                });
+            });
+
+            if (!analyticChx.every(item => item === 0)) {
+                shoveAChartUp(analyticChx, question.checkbox, question.q, 'i')
+            }
+
+            if (!analyticRdx.every(item => item === 0)) {  
+                shoveAChartUp(analyticRdx, question.radio, question.q, 'r')
+            }
+        });
+
+        function findChartByCanvasID(canvasID) {
+            for (var i = 0; i < Object.keys(Chart.instances).length; i++) {
+                var chart = Chart.instances[i];
+                if (chart.canvas.id === canvasID) {
+                    return chart;
+                }
+            }
+            return null; // Chart not found
+        }
+
+        function shoveAChartUp(analytic, question, q, typeIdentifier) {
+            console.log(analytic, question)
+            const canvasRdx = document.createElement('canvas');
+            canvasRdx.id = `q${q}${typeIdentifier}canvas`
+            canvasRdx.setAttribute(
+                'style', "width:100%;max-width:400px; height: 400px; max-height:400px"
+            );
+            eleToEdit.appendChild(canvasRdx);
+
+            const CdataRdx = {
+                labels: question.map(removeTags),
+                datasets: [
+                    {
+                        label: 'Form',
+                        data: analytic,
+                        backgroundColor: ['#9766FF', '#008265', '#F9F871','#FF956B','#FF6499', '#0089A1','#0080FF', '#FAEAFF', '#B70000', '#3A7183'],
+                        color: 'white',
+                        borderColor: '#1b1b1b',
+                    }
+                ]
+            };
+
+            ctx = document.getElementById(`q${q}${typeIdentifier}canvas`).getContext('2d')
+
+            var options = {
+                responsive: true,
+                title: {
+                    display: false,
+                    text: 'Chart.js Doughnut Chart'
+                },
+                animation: {
+                    animateScale: true,
+                    animateRotate: true
+                },
+                tooltips: {
+                    enabled: true,
+                    mode: 'label',
+                    callbacks: {
+                        label: function(tooltipItem, data) {
+                            // console.log(tooltipItem, data)
+                            return data.labels[tooltipItem.index];  // return the label to show
+                        },
+                        footer: function(tooltipItem, data) {
+                            // To display the percentage of the selected option
+
+                            // console.log(tooltipItem, data)
+
+                            // somehow the tooltipItem is an array of objects
+                            // unlike in the previous case where it was an object
+                            var dataset = data.datasets[tooltipItem[0].datasetIndex];
+                            var total = dataset.data.reduce(function(previousValue, currentValue, currentIndex, array) {
+                            return previousValue + currentValue;
+                            });
+                            var currentValue = dataset.data[tooltipItem[0].index];
+                            var precentage = Math.floor(((currentValue/total) * 100)+0.5);   
+
+                            return `${data.datasets[0].data[tooltipItem[0].index]} (${precentage}%)`;
+                        }
+                    }
+                },
+                legend: {
+                    labels: {
+                        fontColor: "white",
+                        fontSize: 16,
+                    },
+                    onClick: newLegendClickHandler  // custom legend click handler
+                }
+            };  
+            
+            new Chart(ctx, {
+                type: 'pie',
+                data: CdataRdx,
+                options: options
+            });
+
+        }
+
+        function removeTags(html) {
+            return html.replace(/<[^>]*>/g, '');
+        }
+    </script>
+</body>
+</html>

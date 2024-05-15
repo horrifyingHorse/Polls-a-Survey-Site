@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<!-- rootL: myDatabase.101 -->
+
+<!-- admin
+adminDatabase.101 -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <style>
+        .heading {
+            font-family: "Monoton", sans-serif;
+            font-size: 3rem;
+
+            span {
+                font-size: 4rem;
+                color: rgb(21, 17, 113);
+            }
+        }
+    </style>
+</head>
+<body class="conductBody" id="loginBg">
+
+    <div style="display: flex; height: 100vh; box-sizing: border-box; align-items: center;">
+        <div class="questionBox login">
+            <form action="" method="post" id="loginForm">
+                <h1 style="text-align: center">Login</h1>
+                <hr width="50%">
+                <div>
+                    <table>
+                        <tr>
+                            <td>Username:</td>
+                            <td><input type="text" name="username" id="uname"
+                                oninput="document.getElementById('signupdisp').style.display = 'none';"></td>
+                        </tr>
+                        <tr>
+                            <td>Password:</td>
+                            <td><input type="password" name="password" id="pswd"
+                                oninput="document.getElementById('signupdisp').style.display = 'none';"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div>
+                    <button type="submit">Submit</button>
+                </div>
+                <div style="margin: 0 auto; font-size: 0.5em;">
+                    Don't have an account? <a href="/signup">Sign Up</a>
+                </div>
+                <div id="signupdisp">
+                    <div id="errorMessage"></div>
+                    <div id="signup" style="display: none;">Or <a href="/signup">Sign Up</a></div>
+                </div>
+            </form>
+        </div>  
+        <div style="margin: 0 auto">
+            <span class="heading" style="color: rgb(124, 52, 195); font-size: 100px">
+                POLLS
+            </span>
+        </div>
+    </div>
+        
+    <script>
+        function clear() {
+            console.log('clear')
+            document.getElementById('signupdisp').style.display = 'none';
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var formData = new FormData(this);
+            fetch('/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: new URLSearchParams(formData)
+            })
+            .then(response =>  {
+                if (response.redirected) {
+                    window.location.href = response.url; // Redirect to the new page
+                } else {
+                    return response.json();
+                }
+            })
+            .then(data => {
+                if (!data.success) {
+                    document.getElementById('errorMessage').textContent = data.error;
+                    document.getElementById('signup').style.display = 'block';
+                    document.getElementById('signupdisp').style.display = 'block';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+
+    </script>
+</body>
+</html>

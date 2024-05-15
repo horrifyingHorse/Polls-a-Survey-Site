@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.3/dragula.min.js">
+    </script>
+
+    <style>
+        .gu-mirror {
+        position: fixed !important;
+        margin: 0 !important;
+        z-index: 9999 !important;
+        opacity: 0.8;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+        filter: alpha(opacity=80);
+        }
+        .gu-hide {
+        display: none !important;
+        }
+        .gu-unselectable {
+        -webkit-user-select: none !important;
+        -moz-user-select: none !important;
+        -ms-user-select: none !important;
+        user-select: none !important;
+        }
+        .gu-transit {
+        opacity: 0.2;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+        filter: alpha(opacity=20);
+        }
+    </style>
+    
+</head>
+<body class="conductBody">
+    <nav class="navbar">
+        <div style="margin-bottom: 0;">
+            <textarea name="formTitle" id="formTitle" class="formTitle"
+            oninput="main[0].form = document.getElementById('formTitle').value;"
+            >Form {{ formn }}</textarea>
+        </div>
+        <div>
+            <button id="home_btn" class="" onclick="navbarDisplay(0)">Home</button>
+            <button id="insert_btn" class="active" onclick="navbarDisplay(1)">Insert</button>
+            <button id="properties_btn" class="" onclick="displayProps()">Properties</button>
+            <button id="saveForm" class="saveFormBut" onclick="saveForm()">Save Form</button>
+            <button id="viewForm" class="viewFormBut" onclick="viewForm()">
+                <img
+                    src="{{ url_for('static', filename='images/arrow-up-right-from-square-solid.svg') }}"
+                    style="width: 0.75; height: 0.75rem;"
+                >
+                View
+            </button>
+            <a href="http://localhost:5000/profile">
+                <input type='button' class="profile" value="{{ username[0].upper() }}">
+            </a>
+        </div>
+
+        <div id="home" class="animate__animated animate__fadeIn">
+            <button id="boldButton" onclick="addMarkdownSyntax('**', 1)"class="tooltip" disabled>
+                <img
+                    src="{{ url_for('static', filename='images/bold-solid.svg') }}"
+                    class="styleIcons"
+                >
+                <span class="tooltiptext">Bold</span>
+            </button>
+            <button id="italicButton" onclick="addMarkdownSyntax('_', 1)"class="tooltip" disabled>
+                <img
+                    src="{{ url_for('static', filename='images/italic-solid.svg') }}"
+                    class="styleIcons"
+                >
+                <span class="tooltiptext">Italic</span>
+            </button>
+            <button id="strikeButton" onclick="addMarkdownSyntax('~~', 1)"class="tooltip" disabled>
+                <img
+                    src="{{ url_for('static', filename='images/strikethrough-solid.svg') }}"
+                    class="styleIcons"
+                >
+                <span class="tooltiptext">Strike</span>
+            </button>
+            <button id="quoteButton" onclick="addMarkdownSyntax('> ', 0)"class="tooltip" disabled>
+                <img
+                    src="{{ url_for('static', filename='images/quote-left-solid.svg') }}"
+                    class="styleIcons"
+                >   
+                <span class="tooltiptext">Field</span>
+            </button>
+            <button id="codeButton" onclick="addMarkdownSyntax('```', 1)"class="tooltip" disabled>
+                <img
+                    src="{{ url_for('static', filename='images/code-solid.svg') }}"
+                    class="styleIcons"
+                >
+                <span class="tooltiptext">Code</span>
+            </button>
+            <button id="h1Button" onclick="addMarkdownSyntax('# ', 0)"class="tooltip" disabled>
+                <img
+                    src="{{ url_for('static', filename='images/heading-solid.svg') }}"
+                    class="styleIcons"
+                >
+                <img
+                    src="{{ url_for('static', filename='images/1-solid.svg') }}"
+                    class="styleIcons"
+                >    
+                <span class="tooltiptext">H1</span>
+            </button>
+            <button id="h2Button" onclick="addMarkdownSyntax('## ', 0)"class="tooltip" disabled
+            >
+                <img
+                    src="{{ url_for('static', filename='images/heading-solid.svg') }}"
+                    class="styleIcons"
+                >    
+                <img
+                    src="{{ url_for('static', filename='images/2-solid.svg') }}"
+                    class="styleIcons"
+                >    
+                <span class="tooltiptext">H2</span>
+            </button>
+            <button id="h3Button" onclick="addMarkdownSyntax('### ', 0)"class="tooltip" disabled>
+                <img
+                    src="{{ url_for('static', filename='images/heading-solid.svg') }}"
+                    class="styleIcons"
+                >
+                <img
+                    src="{{ url_for('static', filename='images/3-solid.svg') }}"
+                    class="styleIcons"
+                >
+                <span class="tooltiptext">H3</span>
+            </button>
+            <button id="ulButton" onclick="addMarkdownSyntax('- ', 0)"class="tooltip" disabled>
+                <img
+                    src="{{ url_for('static', filename='images/list-ul-solid.svg') }}"
+                    class="styleIcons"
+                >
+                <span class="tooltiptext">Unordered List</span>
+            </button>
+            <button id="supButton" onclick="addMarkdownSyntax(' ^', 1)"class="tooltip" disabled>
+                <img
+                    src="{{ url_for('static', filename='images/superscript-solid.svg') }}"
+                    class="styleIcons"
+                >
+                <span class="tooltiptext">Superscript</span>
+            </button>
+            <button id="subButton" onclick="addMarkdownSyntax(' ~', 1)"class="tooltip" disabled>
+                <img
+                    src="{{ url_for('static', filename='images/subscript-solid.svg') }}"
+                    class="styleIcons"
+                >
+                <span class="tooltiptext">Subscript</span>
+            </button>
+            <button id="spoilButton" onclick="addMarkdownSyntax(' >!', 1)" class="tooltip" disabled>
+                <img
+                    src="{{ url_for('static', filename='images/eye-slash-solid.svg') }}"
+                    class="styleIcons"
+                >
+                <span class="tooltiptext">Spoiler</span>
+            </button>
+        </div>
+    
+        <div id="insert" class="animate__animated animate__fadeIn" class="tooltip">
+            <button id="addQue" onclick="iQue()" class="tooltip">
+                <img
+                    src="{{ url_for('static', filename='images/square-plus-solid.svg') }}"
+                    class="styleIcons"
+                >
+                <span class="tooltiptext">Field</span>
+            </button>
+            <button id="addText" onclick="insert('tBox')" class="tooltip">
+                <img
+                    src="{{ url_for('static', filename='images/t-solid.svg') }}"
+                    class="styleIcons"
+                >
+                <span class="tooltiptext">Text</span>
+            </button>
+            <button id="addCheckBox" onclick="insert('cBox')" class="tooltip">
+                <img
+                    src="{{ url_for('static', filename='images/square-check-solid.svg') }}"
+                    class="styleIcons"
+                >
+                <span class="tooltiptext">Check Box</span>
+            </button>
+            <button id="addRadioBut" onclick="insert('rBut')" class="tooltip">
+                <img
+                    src="{{ url_for('static', filename='images/circle-dot-solid.svg') }}"
+                    class="styleIcons"
+                >
+                <span class="tooltiptext">Radio Button</span>
+            </button>
+            <!-- <button id="addDropDown" onclick="insert('drop')" class="tooltip">
+                <img
+                    src="{{ url_for('static', filename='images/square-caret-down-solid.svg') }}"
+                    class="styleIcons"
+                >
+                <span class="tooltiptext">DropDown</span>
+            </button> -->
+            <button id="addOther" onclick="insert('other')" class="tooltip">
+                <img
+                    src="{{ url_for('static', filename='images/square-pen-solid.svg') }}"
+                    class="styleIcons"
+                >
+                <span class="tooltiptext">Other Option</span>
+            </button>
+            <!-- <button id="addInput" onclick="insert('userin')" class="tooltip">
+                <img
+                    src="{{ url_for('static', filename='images/i-cursor-solid.svg') }}"
+                    class="styleIcons"
+                >
+                <span class="tooltiptext">Text Answer</span>
+            </button> -->
+        </div>
+
+        <div id="properties" class="">
+            <button id="saveForm" onclick="saveForm()">Save Form</button>
+            <button id="description" onclick="saveForm()">Description</button>
+        </div>
+
+    </nav>
+
+    <div id="overlay" class="animate__animated animate__fadeIn">
+        <div class="overlay-content">
+            <h2>Properties</h2>
+            <form id="descriptionForm">
+                <div style="display: flex; align-items: flex-start;">
+                    <div style="width: 25%; box-sizing: border-box;">
+                        Form Name:
+                    </div>
+                    <div style="width: 75%; box-sizing: border-box;">
+                        <textarea id="propTitle" class="textBox"
+                        oninput="update(-9, '', 0); main[0].form = document.getElementById('propTitle').value;"
+                        style="border-bottom: 1px solid #9766ff;"
+                        ></textarea>
+                    </div>
+                </div>
+
+                <div style="display: flex; align-items: center;">
+                    <div style="width: 25%; box-sizing: border-box;">
+                        Form Description:
+                    </div>
+                    <div style="width: 75%; box-sizing: border-box;">
+                        <textarea id="propDesc" class="textBox"
+                        oninput="update(-8, '', 0); main[0].description =  document.getElementById('propDesc').value;"
+                        style="border-bottom: 1px solid #9766ff;"
+                        ></textarea>
+                    </div>
+                </div>
+
+                <div style="display: flex; align-items: center;">
+                    <div style="width: 25%; box-sizing: border-box;">
+                        Status:
+                    </div>
+                    <div style="width: 75%; box-sizing: border-box;">
+                        <label class="switch tooltip">
+                            <input type="checkbox" checked=""
+                            onclick="status(this)"
+                            >
+                            <span class="tooltiptext" id="switchStatus">Active</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div style="display: flex; align-items: center;">
+                    <div style="width: 25%; box-sizing: border-box;">
+                        Multiple Submissions:
+                    </div>
+                    <div style="width: 75%; box-sizing: border-box;">
+                        <label class="switch tooltip">
+                            <input type="checkbox" 
+                            onclick="AMS(this)"
+                            >
+                            <span class="tooltiptext" id="AMS">Not Allowed</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <button class='invert' type="submit" style="margin-top: 2rem;">Save</button>
+            </form>
+        </div>
+    </div>
+
+
+    <div class="margin" id="area"> 
+        <script>
+            const ImgUrl = "{{ url_for('static', filename='images/trash-solid.svg') }}"
+        </script>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/new3.js') }}"></script>
+    
+</body>
+</html>
