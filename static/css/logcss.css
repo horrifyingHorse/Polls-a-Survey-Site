@@ -1,0 +1,165 @@
+#loginBg {
+    background-image: linear-gradient(to right, #000000, #040404, #090909, #0d0d0d, #101010, #131118, #151320, #171427, #191334, #1c1142, #200c4e, #27035a);
+}
+
+.conductBody {
+    /* background-image: linear-gradient(to right, #000000, #040102, #070205, #0a0308, #0c040c, #0b0610, #090913, #060c16, #011016, #011315, #051511, #0e160e); */
+    /* background-image: linear-gradient(to left top, #140236, #001036, #00162b, #00171d, #001513, #041813, #091a13, #0f1c13, #0e2415, #0c2b17, #083318, #033b19); */
+    /* background-image: linear-gradient(to right bottom, #393939, #464646, #535353, #616161, #6f6f6f, #6e6e6e, #6c6c6c, #6b6b6b, #5b5b5b, #4b4b4b, #3c3c3c, #2d2d2d); */
+    /* background-image: linear-gradient(to right, #020202, #040404, #070707, #090909, #0b0b0b, #100e15, #14111c, #171323, #1d1531, #241640, #2d164e, #38145b); */
+    /* background-image: linear-gradient(to top, #d28aff, #bd73e9, #a95cd3, #9445bd, #802da8, #712097, #631186, #550076, #490066, #3e0056, #330047, #280038); */
+    /* background-image: linear-gradient(to left, #d28aff, #bd73e9, #a95cd3, #9445bd, #802da8, #712097, #631186, #550076, #490066, #3e0056, #330047, #280038); */
+    
+    /* background-image: linear-gradient(to right bottom, #0f0014, #1b0623, #230a32, #2d0942, #370753, #380555, #3a0457, #3b0259, #34034d, #2c0441, #250335, #1f002a); */
+    /* background-image: linear-gradient(to right top, #c596d6, #b483c6, #a36fb7, #925da8, #814a99, #713e87, #613275, #512764, #3f204c, #2d1935, #1c1120, #070308); */
+    /* background-image: linear-gradient(to right bottom, #f3f3f3, #d4cfe2, #b7abcf, #9e87bb, #8763a5, #744f94, #613c83, #4e2972, #3a2363, #281c53, #161543, #080b33); */
+    
+    /* background-image: linear-gradient(to right bottom, #f3f3f3, #d4cfe2, #b7abcf, #9e87bb, #8763a5, #784f95, #693a86, #5a2576, #4e1c6a, #42145f, #360b53, #2b0348); */
+    background-image: linear-gradient(to bottom, #d6d6d6, #bcb8ca, #a699bd, #927bae, #805c9e, #734a91, #663883, #5a2576, #4e1c6a, #42145f, #360b53, #2b0348);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    color: white;
+    font-family: "Be Vietnam Pro", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    margin: 0;
+}
+
+.media {
+    display: flex;
+    height: 100vh; 
+    box-sizing: border-box;
+    align-items: center;
+}
+
+
+.login {
+    width: 35%;
+    margin-right: 0;
+    margin-left: 10rem;
+    height: 400px;
+    padding: 1rem;
+    font-size: 25px;
+}
+.login input {
+    margin-left: 1rem;
+    padding-top: -50px;
+    outline: none;
+    border: 2px solid #dd6420;
+    border-radius: 10px;
+    background-color: inherit;
+    color: inherit;
+    padding: 0.5rem;
+
+}
+.login div {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1rem;
+}
+.login button {
+    border: 2px solid #070205;
+    background-color: #111111;
+    transition: 250ms;
+    margin-bottom: 1rem;
+}
+.login button:hover {
+    background-color: #211e24;
+}
+.login a {
+    color: #c3a8ff;
+    text-decoration: underline;
+}
+.login #signupdisp {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: #ff4e4e83;
+    border-radius: 15px;
+    display: none;
+}
+
+.media-hidden {
+    display: none;
+}
+
+.normal {
+    display: block;
+}
+
+.questionBox {
+    width: 500px;
+    box-shadow: 0 0 3px gray;
+    padding: 1rem;
+    padding-right: 0;
+    margin: 1rem;
+    box-sizing: border-box;
+
+    /* This Centers the blocks */
+    margin-left: auto;
+    margin-right: auto;
+
+    background-color: #1b1b1b;
+    color: white;
+    transition: all 250ms;
+    border-radius: 25px;
+    animation-duration: 0.05s;
+    z-index: 1;
+}
+.questionBox:hover {
+    box-shadow: 0 0 10px 0px black;
+}
+.questionBox:focus-within {
+    box-shadow: 5px 5px 10px 0px #11e4ba;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-left: 9px solid #9766ff;   
+    outline: none;
+}
+
+
+button {
+    padding: 0.75rem;
+    border: 0px;
+    /* background-color: #2d3142; */
+    background-color: inherit;
+    color: white;
+    border-radius: 10px;
+    transition: 300ms;
+}
+button:hover {
+    background-color: #2e2e2e;
+}
+button[disabled] {
+    background-color: #2e2e2e;
+    color: gray;
+}
+input[type="button"], input[type="button"]:hover {
+    text-decoration: none;
+    padding: 1rem;
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+    outline: none;
+    border: none;
+}
+
+@media screen and (max-width: 932px){
+    .media {
+        display: block;
+        box-sizing: border-box;
+        align-items: center;
+    }
+    .media-hidden {
+        display: block;
+    }
+    .normal {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .questionBox {
+        width: 400px;
+    }
+}

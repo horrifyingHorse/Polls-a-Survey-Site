@@ -539,7 +539,7 @@ input[type="button"], input[type="button"]:hover {
     width: 35%;
     margin-right: 0;
     margin-left: 10rem;
-    height: 46%;
+    height: 400px;
     padding: 1rem;
     font-size: 25px;
 }

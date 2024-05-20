@@ -19,7 +19,6 @@ db = mysql.connector.connect(
     database="survey"
 )
 
-
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
