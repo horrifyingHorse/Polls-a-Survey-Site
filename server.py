@@ -28,7 +28,6 @@ def signup():
         # mobno = request.form['phone']
         print(username, password, mail)
 
-        # Check if the username is already taken
         cursor = db.cursor(buffered=True)
         cursor.execute("SELECT * FROM users WHERE username = %s", (username,))
         user = cursor.fetchone()
@@ -41,14 +40,12 @@ def signup():
                 }
             )
 
-        # Insert the new user into the database
         cursor.execute(
             "INSERT INTO users (username, password, mail) VALUES (%s, %s, %s)", 
             (username, password, mail)
         )
         db.commit()
 
-        # creating a form table for the user
         cursor.execute(
             f"""
             CREATE TABLE user_{username} (
@@ -60,7 +57,6 @@ def signup():
         )
         db.commit()
 
-        # creating a table for the user to store history of submissions
         cursor.execute(
             f"""
             CREATE TABLE user_{username}_h (
@@ -96,10 +92,9 @@ def login():
         if str(user[1]) != str(password):
             return jsonify({'success': False, 'error': 'Invalid password'})
 
-        # Continue with cookies and redirect to main.html
-        response = make_response(redirect('/profile/' + username))
+        response = make_response(redirect('/profile'))
         response.set_cookie('username', username)
-        # jsonify({'success': True})
+
         return response
 
     return render_template('login.html')
@@ -112,25 +107,7 @@ def main():
     if username is None:
         return redirect('/login')
 
-    return redirect('/profile/' + username)
-    # formn = db.cursor().execute(f"SELECT COUNT(*) from user_{username};") + 1
-
-    # # if username is None:
-    # #     return "You are not logged in."
-    # i = 1
-    # cursor = db.cursor(buffered=True)
-    # while True:
-    #     cursor.execute(
-    #         f"SELECT formname from user_{username} WHERE formname = 'Form {i}';"
-    #     )
-    #     formn = cursor.fetchone()
-
-    #     if formn is None:
-    #         break
-        
-    #     i += 1 
-
-    # return render_template('main.html', username=username, formn=i)
+    return redirect('/profile')
 
 @app.route('/create')
 def create():
@@ -408,16 +385,7 @@ def redirectProfile():
     username = request.cookies.get('username')
     if username is None:
         return redirect('/login')
-
-    return redirect('/profile/' + username)
-
-@app.route('/profile/<user>')
-def profilePage(user):
-    username = request.cookies.get('username')
-    if (username != user):
-        return "You are not authorized to view this page."
-    
-    
+        
     formDetails = []
 
     cursor = db.cursor(buffered=True)
@@ -451,9 +419,8 @@ def profilePage(user):
     print(formDetails, '\n', historyForms, '\n')
 
     return render_template(
-        'profile.html', username=user, forms=formDetails, history=historyForms
+        'profile.html', username=username, forms=formDetails, history=historyForms
     )
-    # return render_template('profile.html', username=username, forms=forms)
 
 @app.route('/analyse/<form_id>')
 def analyse(form_id):
