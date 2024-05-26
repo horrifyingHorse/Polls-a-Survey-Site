@@ -80,8 +80,43 @@
             document.getElementById('signupdisp').style.display = 'none';
         }
 
+        function someErr (formErr) {
+            document.getElementById('errorMessage').textContent = formErr;
+            document.getElementById('signup').style.display = 'block';
+            document.getElementById('signupdisp').style.display = 'block';
+        }
+
+        function verify_lol() {
+            const defaultErrStr = 'Invalid'
+            let errStr = ''
+            let joint = ''
+
+            if (document.getElementById('uname').value.trim() === '') {
+                errStr += ` Username`
+                joint = ','
+            }
+            if (document.getElementById('pswd').value.trim() === '')  {
+                errStr = `${errStr}${joint} Password`
+            }
+            if (document.getElementById('email').value.trim() === '')  {
+                errStr = `${errStr}${joint} Email`
+            }
+
+            errStr = `${defaultErrStr}${errStr}.`
+
+            if (errStr.length != 8) {
+                someErr(errStr)
+                return false
+            }
+
+            return true
+        }
+
         document.getElementById('signupform').addEventListener('submit', function(event) {
             event.preventDefault();
+
+            if (!verify_lol()) return false
+
             var formData = new FormData(this);
             fetch('/signup', {
                 method: 'POST',
@@ -99,9 +134,7 @@
             })
             .then(data => {
                 if (!data.success) {
-                    document.getElementById('errorMessage').textContent = data.error;
-                    document.getElementById('signup').style.display = 'block';
-                    document.getElementById('signupdisp').style.display = 'block';
+                    someErr(data.error)
                 }
             })
             .catch(error => {
