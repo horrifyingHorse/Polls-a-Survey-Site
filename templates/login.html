@@ -125,7 +125,7 @@ adminDatabase.101 -->
             })
             .then(response =>  {
                 if (response.redirected) {
-                    window.location.href = response.url; // Redirect to the new page
+                    window.location.href = response.url;
                 } else {
                     return response.json();
                 }
