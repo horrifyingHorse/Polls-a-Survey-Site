@@ -81,8 +81,40 @@ adminDatabase.101 -->
             document.getElementById('signupdisp').style.display = 'none';
         }
 
+        function someErr (formErr) {
+            document.getElementById('errorMessage').textContent = formErr;
+            document.getElementById('signup').style.display = 'block';
+            document.getElementById('signupdisp').style.display = 'block';
+        }
+
+        function verify_lol() {
+            const defaultErrStr = 'Invalid'
+            let errStr = ''
+            let joint = ''
+
+            if (document.getElementById('uname').value.trim() === '') {
+                errStr += ` Username`
+                joint = ' &'
+            }
+            if (document.getElementById('pswd').value.trim() === '')  {
+                errStr = `${errStr}${joint} Password`
+            }
+
+            errStr = `${defaultErrStr}${errStr}.`
+
+            if (errStr.length != 8) {
+                someErr(errStr)
+                return false
+            }
+
+            return true
+        }
+
         document.getElementById('loginForm').addEventListener('submit', function(event) {
             event.preventDefault();
+            
+            if (!verify_lol()) return false
+
             var formData = new FormData(this);
             fetch('/login', {
                 method: 'POST',
@@ -100,9 +132,7 @@ adminDatabase.101 -->
             })
             .then(data => {
                 if (!data.success) {
-                    document.getElementById('errorMessage').textContent = data.error;
-                    document.getElementById('signup').style.display = 'block';
-                    document.getElementById('signupdisp').style.display = 'block';
+                    someErr(data.error)
                 }
             })
             .catch(error => {
