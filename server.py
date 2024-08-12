@@ -7,8 +7,6 @@ import json
 import mistune
 import string
 
-# mongodb+srv://ayaan:tanu0909@cluster0.gusgocs.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
-
 app = Flask(__name__, static_url_path='/static')
 
 # Connect to the MySQL database
@@ -736,3 +734,4 @@ def viewForm(form_id, id):
 
 if __name__ == '__main__':
     app.run()
+
